@@ -19,7 +19,7 @@ h1{text-align:center;color:#8b3f16;margin:0 0 5px}h2{text-align:center;color:#b8
 .note{font-size:14px;color:#6d5848}.final{font-size:22px;font-weight:900;text-align:center;color:#7d3c12}
 @media(max-width:600px){.susgrid{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
-<div class="ver">Version F</div>
+<div class="ver">vF</div>
 
 <section id="pageA" class="page active"><div class="wrap">
 <h1>🍂 Fall Festival Mystery</h1><h2>Part A — Two-Step Inequalities</h2>
@@ -51,19 +51,19 @@ h1{text-align:center;color:#8b3f16;margin:0 0 5px}h2{text-align:center;color:#b8
 </div></section>
 
 <script>
-const F="F", https://script.google.com/macros/s/AKfycbwFrAvmV8FBHcXWB4BjmjXZLq-xKrAyhCSs7_Opl1DxJb8XjvGZ5JBEZC3gSwbqqPeu4Q/exec="https://script.google.com/macros/s/AKfycbwFrAvmV8FBHcXWB4BjmjXZLq-xKrAyhCSs7_Opl1DxJb8XjvGZ5JBEZC3gSwbqqPeu4Q/exec";
+const VERSION="F", ENDPOINT="https://script.google.com/macros/s/AKfycbwFrAvmV8FBHcXWB4BjmjXZLq-xKrAyhCSs7_Opl1DxJb8XjvGZ5JBEZC3gSwbqqPeu4Q/exec";
 const sets={"A":[{"text":"3x - 10 >= -22","sym":">=","b":-4},{"text":"4x + 7 < 27","sym":"<","b":5},{"text":"3x + 5 > 17","sym":">","b":4},{"text":"2x - 7 <= -13","sym":"<=","b":-3},{"text":"-4x + 6 >= -2","sym":"<=","b":2},{"text":"5x - 9 < -19","sym":"<","b":-2}],"B":[{"text":"-3(x - 2) + 5 <= -1x + 9","sym":">=","b":1},{"text":"3(x + 4) - 2 < -1x + 10","sym":"<","b":0},{"text":"4(x + 2) + 1 <= 1x + 12","sym":"<=","b":1},{"text":"2(x - 4) - 3 < -2x + 9","sym":"<","b":5},{"text":"2(x + 3) - 1 > -1x + 8","sym":">","b":1},{"text":"3(x - 2) + 4 <= 1x - 6","sym":"<=","b":-2}],"C":[{"text":"-2x - 6 <= 0","sym":">=","b":-3},{"text":"5x + 4 < 19","sym":"<","b":3},{"text":"-4x + 9 > 17","sym":"<","b":-2},{"text":"3x - 8 <= 4","sym":"<=","b":4},{"text":"-5x - 1 >= -6","sym":"<=","b":1},{"text":"2x + 11 > 1","sym":">","b":-5}]};
 const eliminated={A:["Sammy Squirrel", "Tom Turkey"],B:["Peter Pumpkin", "Annie Apple"],C:["Oliver Owl"]};
 const culprit="Freddie Fall";
 const attempts={}; const solved={A:new Set(),B:new Set(),C:new Set()};
-let crossed=new Set(JSON.parse(localStorage.getItem("fallCross"+F)||"[]"));
+let crossed=new Set(JSON.parse(localStorage.getItem("fallCross"+VERSION)||"[]"));
 
 function pretty(t){return t.replaceAll(">=","≥").replaceAll("<=","≤");}
 function suspects(part){
  const el=document.getElementById("sus"+part); el.innerHTML="";
  ["Sammy Squirrel","Tom Turkey","Peter Pumpkin","Annie Apple","Oliver Owl","Freddie Fall"].forEach(n=>{
   const d=document.createElement("div"); d.className="sus"+(crossed.has(n)?" cross":""); d.textContent=n;
-  d.onclick=()=>{crossed.has(n)?crossed.delete(n):crossed.add(n);localStorage.setItem("fallCross"+F,JSON.stringify([...crossed]));["A","B","C"].forEach(p=>suspects(p));};
+  d.onclick=()=>{crossed.has(n)?crossed.delete(n):crossed.add(n);localStorage.setItem("fallCross"+VERSION,JSON.stringify([...crossed]));["A","B","C"].forEach(p=>suspects(p));};
   el.appendChild(d);
  });
 }
@@ -107,7 +107,7 @@ function checkC(i){
 function finish(part){
  if(solved[part].size!==6)return;
  document.getElementById("clue"+part).classList.add("show");
- eliminated[part].forEach(n=>crossed.add(n)); localStorage.setItem("fallCross"+F,JSON.stringify([...crossed]));
+ eliminated[part].forEach(n=>crossed.add(n)); localStorage.setItem("fallCross"+VERSION,JSON.stringify([...crossed]));
  ["A","B","C"].forEach(p=>suspects(p));
  if(part==="A")document.getElementById("nextA").classList.add("show");
  if(part==="B")document.getElementById("nextB").classList.add("show");
@@ -117,7 +117,7 @@ function go(p){document.querySelectorAll(".page").forEach(x=>x.classList.remove(
 async function submitCase(){
  const firstName=document.getElementById("firstName").value.trim(),lastName=document.getElementById("lastName").value.trim(),period=document.getElementById("period").value;
  if(!firstName||!lastName||!period){document.getElementById("submitMsg").textContent="Enter your first name, last name, and class period first.";return;}
- const payload={studentName:name,period,version:F,part1:6,part2:6,part3:6,total:18,finalReveal:culprit,attempts};
+ const payload={studentName:name,period,version:VERSION,part1:6,part2:6,part3:6,total:18,finalReveal:culprit,attempts};
  try{await fetch(https://script.google.com/macros/s/AKfycbwFrAvmV8FBHcXWB4BjmjXZLq-xKrAyhCSs7_Opl1DxJb8XjvGZ5JBEZC3gSwbqqPeu4Q/exec,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
  document.getElementById("submitMsg").textContent="✓ Case submitted! You may now close this page.";document.getElementById("submitBtn").disabled=true;}
  catch(e){document.getElementById("submitMsg").textContent="Submission failed. Please tell your teacher.";}
