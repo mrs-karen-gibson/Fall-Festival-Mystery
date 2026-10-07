@@ -118,7 +118,7 @@ async function submitCase(){
  const firstName=document.getElementById("firstName").value.trim(),lastName=document.getElementById("lastName").value.trim(),period=document.getElementById("period").value;
  if(!firstName||!lastName||!period){document.getElementById("submitMsg").textContent="Enter your first name, last name, and class period first.";return;}
  const payload={studentName:name,period,version:VERSION,part1:6,part2:6,part3:6,total:18,finalReveal:culprit,attempts};
- try{await fetch(https://script.google.com/macros/s/AKfycbwFrAvmV8FBHcXWB4BjmjXZLq-xKrAyhCSs7_Opl1DxJb8XjvGZ5JBEZC3gSwbqqPeu4Q/exec,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+ try{await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
  document.getElementById("submitMsg").textContent="✓ Case submitted! You may now close this page.";document.getElementById("submitBtn").disabled=true;}
  catch(e){document.getElementById("submitMsg").textContent="Submission failed. Please tell your teacher.";}
 }
